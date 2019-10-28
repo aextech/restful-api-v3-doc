@@ -16,6 +16,9 @@ AEX RESTful API 协议说明文档 （V1）
    + [10. 通过Tag查询我的成交记录](#10-通过tag查询我的成交记录), [\[错误码\]](#错误应答错误码-9)
 + [FAQ](#faq)
    + ["param time should be a timestamp"错误要怎么处理？](#param-time-should-be-a-timestamp错误要怎么处理)
+   + ["api版本说明](#api版本说明)
+   + ["请求与应答说明](#请求与应答说明)
+   
 
 # 请求/应答
 ## 1. 获取交易对行情数据   
@@ -244,36 +247,7 @@ AEX RESTful API 协议说明文档 （V1）
   ``` 
   
   ### 错误应答(错误码)
-  错误码 | 说明
-  -----  | ---------
-  "[]"      | 系统错误
-  "param time should be a timestamp"   | time参数错误，正确的time参数是一个10位整数，单位是秒，不是毫秒
-  "param time over 30 seconds"   | time参数跟服务器时间相比偏移超过30秒
-  "public key error"   | 公钥格式错误
-  "wrong public key"   | 公钥不存在
-  "wrong md5 value"   | md5参数错误，跟服务器计算出来的不一致
-  "{IP} is not allowed."   | IP不在白名单中
-  "system_busy"   | 系统错误
-  "input_error1"  | 请求参数错误
-  "noOrder"  | mk_type和c参数指定的交易对无效
-  "invalid_market_name" | mk_type参数指定的市场无效
-  "trade_conf_err" | 系统错误，交易参数配置无效
-  "invalid_order_type" | type参数错误，只有1=买单，2=卖单
-  "input_error2" |  挂单价格无效
-  "sys_amt_precision_err#1" | 系统错误，挂单数量精度配置错误
-  "sys_amt_precision_err#2" | 系统错误，挂单数量精度配置错误
-  "input_error3" | 挂单数量精度超过配置
-  "min" | 挂单数量超过最大限制
-  "sml" | 挂单数量少于最小限制
-  "lag" | 挂单价格超过最大限制
-  "sys_price_precision_conf" | 系统错误，价格精度配置错误
-  "sys_price_precision_err#1" | 挂单价格精度超过8位
-  "sys_price_precision_err#2" | 挂单价格精度<0
-  "deciError2" | 挂单价格精度超过系统配置
-  "amountsmall" | 挂单金额少于最小限制: 挂单金额=挂单价格x挂单数量
-  "succ" | 当前挂单直接撮合了，没有生成订单
-  "succ\|{number}" | 当前挂单部分成交或者完全没有成交，剩余的部分生成了订单，订单ID是number
-  "system_busy#8" | 可能已经有部分成交或者完全没成交，剩余的部分生成订单失败
+  参考请求和应答说明
   
   
 ## 6. 撤单   
@@ -304,22 +278,7 @@ AEX RESTful API 协议说明文档 （V1）
   ```      
   
   ### 错误应答(错误码)
-  错误码 | 说明
-  -----  | ---------
-  "[]"      | 系统错误
-  "param time should be a timestamp"   | time参数错误，正确的time参数是一个10位整数，单位是秒，不是毫秒
-  "param time over 30 seconds"   | time参数跟服务器时间相比偏移超过30秒
-  "public key error"   | 公钥格式错误
-  "wrong public key"   | 公钥不存在
-  "wrong md5 value"   | md5参数错误，跟服务器计算出来的不一致
-  "{IP} is not allowed."   | IP不在白名单中
-  "input_error1"  | 请求参数错误
-  "invalid_pricing_coin" | mk_type参数指定的市场无效
-  "coinerr"  | mk_type和c参数指定的交易对无效
-  "system_busy#1"   | 系统错误
-  "system_err" | 系统错误
-  "no_record" | 待撤销的订单不存在
-  "failed" | 撤销订单失败
+  参考请求和应答说明
   
   
 ## 7. 我的挂单   
@@ -359,18 +318,7 @@ AEX RESTful API 协议说明文档 （V1）
   ```      
   
   ### 错误应答(错误码)
-  错误码 | 说明
-  -----  | ---------
-  "[]"      | 系统错误
-  "param time should be a timestamp"   | time参数错误，正确的time参数是一个10位整数，单位是秒，不是毫秒
-  "param time over 30 seconds"   | time参数跟服务器时间相比偏移超过30秒
-  "public key error"   | 公钥格式错误
-  "wrong public key"   | 公钥不存在
-  "wrong md5 value"   | md5参数错误，跟服务器计算出来的不一致
-  "{IP} is not allowed."   | IP不在白名单中
-  "input_error1"  | 请求参数错误, 或者交易市场无效
-  "coinerr"  | mk_type和c参数指定的交易对无效
-  "no_record" | 没有挂单
+  参考请求和应答说明
 
   
 ## 8. 我的成交记录   
@@ -411,18 +359,7 @@ AEX RESTful API 协议说明文档 （V1）
   ```      
   
   ### 错误应答(错误码)
-  错误码 | 说明
-  -----  | ---------
-  "[]"      | 系统错误
-  "param time should be a timestamp"   | time参数错误，正确的time参数是一个10位整数，单位是秒，不是毫秒
-  "param time over 30 seconds"   | time参数跟服务器时间相比偏移超过30秒
-  "public key error"   | 公钥格式错误
-  "wrong public key"   | 公钥不存在
-  "wrong md5 value"   | md5参数错误，跟服务器计算出来的不一致
-  "{IP} is not allowed."   | IP不在白名单中
-  "input_error1"  | 请求参数错误, 或者交易市场无效
-  "coinerr"  | mk_type和c参数指定的交易对无效
-  "no_record" | 没有挂单
+  参考请求和应答说明
 
 
 ## 9. 通过Tag查询我的挂单   
@@ -470,19 +407,7 @@ AEX RESTful API 协议说明文档 （V1）
   ```      
   
   ### 错误应答(错误码)
-  错误码 | 说明
-  -----  | ---------
-  "[]"      | 系统错误
-  "param time should be a timestamp"   | time参数错误，正确的time参数是一个10位整数，单位是秒，不是毫秒
-  "param time over 30 seconds"   | time参数跟服务器时间相比偏移超过30秒
-  "public key error"   | 公钥格式错误
-  "wrong public key"   | 公钥不存在
-  "wrong md5 value"   | md5参数错误，跟服务器计算出来的不一致
-  "{IP} is not allowed."   | IP不在白名单中
-  "input_error1"  | 请求参数错误, 或者交易市场无效
-  "noOrder"  | mk_type和c参数指定的交易对无效
-  "no_record" | 没有挂单
-  "system_busy" | 系统错误
+  参考请求和应答说明
 
   
 ## 10. 通过Tag查询我的成交记录   
@@ -537,23 +462,63 @@ AEX RESTful API 协议说明文档 （V1）
   ```      
   
   ### 错误应答(错误码)
-  错误码 | 说明
-  -----  | ---------
-  "[]"      | 系统错误
-  "param time should be a timestamp"   | time参数错误，正确的time参数是一个10位整数，单位是秒，不是毫秒
-  "param time over 30 seconds"   | time参数跟服务器时间相比偏移超过30秒
-  "public key error"   | 公钥格式错误
-  "wrong public key"   | 公钥不存在
-  "wrong md5 value"   | md5参数错误，跟服务器计算出来的不一致
-  "{IP} is not allowed."   | IP不在白名单中
-  "input_error1"  | 请求参数错误, 或者交易市场无效
-  "noOrder"  | mk_type和c参数指定的交易对无效
-  "system_busy" | 系统错误
+    参考请求和应答说明
 
 # FAQ
-## "param time should be a timestamp"错误要怎么处理？
+## "api版本说明
   ```
-  1）要使用http的post请求，不能是get请求，也不能是json格式的请求   
-  2）设置Content-type: application/x-www-form-urlencoded
+  这版的改动统称为v3。如果在v3没有找到的接口， 请在老版本查找
+  
   ```
+## "请求与应答说明
+  ```
+    1）应答公共字段说明；code：程序代码；msg：返回错误的信息；data：成功返回的字段
+    2）关系说明；code是一个整数，最高为是奇数时代表程序出错，反之最高位是偶数时，程序成功；当程序成功时msg一般为空，反之，程序失败时data一般为空。程序是否成功不能用msg和data为空来判定，这只是参考条件，决定条件是code的最高位的奇偶。
+    3）code错误和msg说明：不同的code通常代表不同的意思，不过有些开发的报错用的是统一的报错code，这时需要参考一下msg或者data里面的信息
+    4)下面code具体代表的意义
+  ```
+  
+    code |msg(data)-zh |msg(data)-en|说明
+    -----| ------------|------------ |----- 
+    20000 |           |             |下单成功
+    110040 |           |             |币种不存在
+    110039 |           |             |币种不存在
+    110039 |           |             |币种不存在
+    110039 |           |             |币种不存在
+    110039 |           |             |币种不存在
+    110039 |           |             |币种不存在
+    110039 |           |             |币种不存在
     
+    
+    | 10062 | 价格精度不能小于0 | [] | trade_area_coin.php  precision |
+    | 10067 | 交易价格精度不能超过配置精度 | [] | trade_area_coin.php    precision  |
+    | 10063 | 挂单数量精度不能超过配置的精度 | [] | trade_area.php    order_precision |
+    | 10064 | 数量不能超过配置的最大限制 | [] |  trade_area.php    order_max|
+    | 10065 | 订单数量不能小于配置的最小限制 | [] |  trade_area.php    order_min |
+    | 10066 | 挂单价格不能超过配置的最大限制 | [] |  trade_area.php    price_max |
+    | 10075 | 交易总金额不能小于配置的金额 | [] |  trade_area.php    money_min |
+    | 10071 | 未找到最后价格 | [] |内部错误  |
+    | 10068 | 插入挂单日志失败 | [] |  |
+    | 10069 | 减少用户币 | [] |  |
+    | 10055 | 下单金额不足 | [] |  |
+    | 10054 | 价格波动过大 20% | [] |买卖价格波动说明：买的时候是比买一高20%； 卖的时候是比卖一低20%  |
+    
+    
+    ##### 成功返回
+    
+    ``` json
+    {
+        "code": 20000,
+        "msg": "",
+        "data": {}
+    }
+    ```
+    
+    ##### 返回成功后，会推送websocket给前端表示挂单成功
+    ```
+    {
+    c: "btc"
+    
+    cmd: 14
+    m: "cnc"
+    ord
