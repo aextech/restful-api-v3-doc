@@ -24,10 +24,8 @@ AEX RESTful API 协议说明文档 （V1）
 
   请求URL
   ```
-  GET /ticker.php?mk_type={market}&c={coin}
+  POST /v3/ticker.php
   ```
-  例如: https://api.aex.zone/ticker.php?mk_type=cnc&c=btc 
-  
   请求参数:   
   
   参数名  | 说明
@@ -37,64 +35,63 @@ AEX RESTful API 协议说明文档 （V1）
   
   正常应答（json）
   ```
-  btc/cnc 交易对行情数据：
   {
-    "ticker":{
-      "high":85701,
-      "low":78527,
-      "last":81538,
-      "vol":4775.686371,
-      "buy":81434,
-      "sell":81537,
-      "range":-0.017
-    }
+        "code":20000,
+        "msg":"",
+        "data":
+            btc/cnc 交易对行情数据：
+            {
+            "ticker":{
+              "high":85701,
+              "low":78527,
+              "last":81538,
+              "vol":4775.686371,
+              "buy":81434,
+              "sell":81537,
+              "range":-0.017
+            }
+            }
+            ```
+            ```
+            cnc 交易区下所有交易对行情数据:
+            {
+            "gat":{
+                "ticker":{
+                    "high":0.0158,
+                    "low":0.015,
+                    "last":0.01529,
+                    "vol":352898167.69075,
+                    "buy":0.01527,
+                    "sell":0.01532,
+                    "range":-0.0077
+                }
+            },
+            "btc":{
+                "ticker":{
+                    "high":85701,
+                    "low":78527,
+                    "last":81445,
+                    "vol":4775.959156,
+                    "buy":81417,
+                    "sell":81448,
+                    "range":-0.0177
+                }
+            },
+            ...
+            }
   }
-  ```
-  ```
-  cnc 交易区下所有交易对行情数据:
-  {
-    "gat":{
-        "ticker":{
-            "high":0.0158,
-            "low":0.015,
-            "last":0.01529,
-            "vol":352898167.69075,
-            "buy":0.01527,
-            "sell":0.01532,
-            "range":-0.0077
-        }
-    },
-    "btc":{
-        "ticker":{
-            "high":85701,
-            "low":78527,
-            "last":81445,
-            "vol":4775.959156,
-            "buy":81417,
-            "sell":81448,
-            "range":-0.0177
-        }
-    },
-    ...
-  }  
+  
   ```
   ### 错误应答(错误码)
-  错误码 | 说明
-  -----  | ---------
-  "input_error1"        | 参数错误
-  "invalid_market_name" | mk_type参数指定的市场无效
-  "invalid_trade_coin" | 无效交易对
-  "fail#1" | 系统错误
+  参考请求和应答说明
   
   
 ## 2. 获取交易对深度数据   
 
   请求URL
   ```
-  GET /depth.php?mk_type={market}&c={coin}
+  POST /v3/depth.php
   ```
-  例如: https://api.aex.zone/depth.php?mk_type=cnc&c=btc 
-  
   请求参数:   
   
   参数名  | 说明
@@ -102,43 +99,40 @@ AEX RESTful API 协议说明文档 （V1）
   mk_type | 交易区，比如 cnc
   c       | 币名，比如: c=btc, 获取btc/cnc交易对的行情数据; c=all, 获取cnc交易区下所有有效交易对的行情数据
   
-  
   正常应答（json）
   ```
   {
-    "bids":[
-      [
-          81289,
-          0.0256
-      ],
-      ...
-    ],
-    "asks":[
-      [
-          81324,
-          0.019146
-      ],
-      ...
-    ]
+      "code":20000,
+      "msg":"",
+      "data":
+         {
+           "bids":[
+             [
+                 81289,
+                 0.0256
+             ],
+             ...
+           ],
+           "asks":[
+             [
+                 81324,
+                 0.019146
+             ],
+             ...
+           ]
+         }
   }
   ```  
   ### 错误应答(错误码)
-  错误码 | 说明
-  -----  | ---------
-  "input_error1"        | 参数错误
-  "fail#1" | mk_type参数指定的市场无效
-  "no_order" | 无效交易对
-  "fail#3" | 系统错误
+  参考请求和应答说明
   
   
 ## 3. 获取交易对历史成交数据   
 
   请求URL
   ```
-  GET /v3/trades.php?mk_type={market}&c={coin}&tid={tradeId}
+  POST /v3/trades.php
   ```
-  例如: https://api.aex.zone/v3/trades.php?mk_type=cnc&c=btc 
-  
   请求参数:   
   
   参数名  | 说明
@@ -166,11 +160,7 @@ AEX RESTful API 协议说明文档 （V1）
     }
   ```   
   ### 错误应答(错误码)
-  错误码 | 说明
-  -----  | ---------
-  "input_error1"        | 参数错误
-  "[]" | mk_type参数指定的市场无效, 或者交易对无效，或者无成交数据
-  
+  参考请求和应答说明
   
 ## 4. 我的账户余额   
 
@@ -203,18 +193,7 @@ AEX RESTful API 协议说明文档 （V1）
   
   ```    
   ### 错误应答(错误码)
-  错误码 | 说明
-  -----  | ---------
-  "[]"      | 系统错误
-  "param time should be a timestamp"   | time参数错误，正确的time参数是一个10位整数，单位是秒，不是毫秒
-  "param time over 30 seconds"   | time参数跟服务器时间相比偏移超过30秒
-  "public key error"   | 公钥格式错误
-  "wrong public key"   | 公钥不存在
-  "wrong md5 value"   | md5参数错误，跟服务器计算出来的不一致
-  "{IP} is not allowed."   | IP不在白名单中
-  "fail #4" | 系统错误
-  
-  
+  参考请求和应答说明
   
 ## 5. 挂单   
 
@@ -245,11 +224,6 @@ AEX RESTful API 协议说明文档 （V1）
       "data":[]
   }
   ``` 
-  正常应答: 下单时部分撮合成交（string）
-  ```
-  "succ|{orderId}"
-  ``` 
-  
   ### 错误应答(错误码)
   参考请求和应答说明
   
@@ -487,6 +461,7 @@ AEX RESTful API 协议说明文档 （V1）
     20000  |     程序成功 |             |
     220010 |     下单成功 |             |
     220020 |     撤单成功 |             |
+    50004  |     必填参数为空|             |
     10002  |     处理失败，默认的|             |
     110046 |     交易区不存在 |             |
     110047 |     订单类型错误 |             |
