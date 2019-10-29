@@ -446,15 +446,13 @@ AEX RESTful API 协议说明文档 （V3）
   
     请求URL
     ```
-    POST /v3/tradeconf.php
+    GET /v3/tradeconf.php
     ```
 
   请求参数:   
   
   参数名  | 说明
   -----  | ---------
-    | 
-
 
     
     应答（json）
