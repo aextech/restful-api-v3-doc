@@ -456,7 +456,8 @@ AEX RESTful API 协议说明文档 （V1）
     3）code错误和msg说明：不同的code通常代表不同的意思，不过有些开发的报错用的是统一的报错code，这时需要参考一下msg或者data里面的信息
   ```
   
- code具体代表的意义
+ code具体代表的意义:
+ 
     code |     说明   |msg(data)-zh |msg(data)-en
     -----| ------------|------------ |----- 
     20000  |     程序成功 |             |
@@ -488,6 +489,20 @@ AEX RESTful API 协议说明文档 （V1）
     110073 |     不存在订单 |             |
     110071 |     已经存在撤单 |             |
     110072 |     加入撤单日志失败 |             |
-
-  
- 
+    
+    
+    
+    
+      请求参数:   
+      
+      参数名  | 说明
+      -----  | ---------
+      key  | 公钥
+      time | 发起请求时的Unix时间戳，单位秒，不是毫秒
+      md5  | 鉴权md5，md5=md5("{key}\_{user_id}\_{skey}\_{time}"), user_id是用户登录后的数字ID，不是邮箱账号
+      mk_type | 交易区，比如 cnc
+      coinname | 币名，比如 gat
+      tag | 要查询什么tag的订单，要求tag>=1，这里的tag是submitOrder.php请求中的tag
+      since_trade_id | 从哪个成交ID开始查询（可选），since_trade_id>=1，不带该参数默认从第一条成交记录开始查询
+      
+      
