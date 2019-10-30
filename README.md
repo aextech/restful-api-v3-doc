@@ -286,7 +286,7 @@ AEX RESTful API 协议说明文档 （V3）
     "data":
     [
         {
-          "id":"3189572",
+          "order_id":"3189572",
           "coinname":"gat",
           "type":"1",
           "price":"0.01530000",
@@ -327,7 +327,7 @@ AEX RESTful API 协议说明文档 （V3）
       "data":
       [
           {
-            "id":"3189572",
+            "trade_id":"3189572",
             "coinname":"gat",
             "type":"1",
             "price":"0.01530000",
@@ -374,7 +374,7 @@ AEX RESTful API 协议说明文档 （V3）
            "tag":23,
            "orders":[
              {
-               "id":3190716,
+               "order_id":3190716,
                "type":1,
                "price":0.01535,
                "amount":755.407687,
@@ -422,7 +422,7 @@ AEX RESTful API 协议说明文档 （V3）
          "tag":25,
          "trades":[
            {
-             "id":1423223,
+             "trade_id":1423223,
              "type":1,
              "price":0.01541,
              "volume":65.541856,
@@ -430,7 +430,7 @@ AEX RESTful API 协议说明文档 （V3）
              "time":"2019-08-07 16:24:14"
            },
            {
-             "id":1423224,
+             "trade_id":1423224,
              "type":1,
              "price":0.01541,
              "volume":686.924594,
@@ -531,5 +531,3 @@ AEX RESTful API 协议说明文档 （V3）
     110073 |     不存在订单 |             |
     110071 |     已经存在撤单 |             |
     110072 |     加入撤单日志失败 |             |
-      
-      
