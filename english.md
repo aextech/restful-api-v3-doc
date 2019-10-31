@@ -1,7 +1,7 @@
 AEX RESTful API Protocol Documentation (V3)
 ---
 
-[Chinese version](/中文.md)
+[中文版](/中文.md)
 
 # table of Contents
 + [public data interface](#request--response)
