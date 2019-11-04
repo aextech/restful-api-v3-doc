@@ -610,34 +610,34 @@ AEX RESTful API Protocol Documentation (V3)
  The meaning of the specific representation of code:
 
 Code | Description |msg(data)-zh |msg(data)-en
------| ------------|------------ |-----
-    20000 | Program Success | |
-    220010 | Order success | |
-    220020 | Successful withdrawal | |
-    50004 | Required parameters are empty | |
-    10002 | Processing failed, default | |
-    110046 | Trading area does not exist | |
-    110047 | Order Type Error | |
-    110054 | Price fluctuations are too large | |
-    110055 | Insufficient order amount | |
-    110056 | Trading currency does not exist | |
-    110057 | Accuracy does not exist | |
-    110058 | Unopened transaction | |
-    110059 | Pending order price can't be less than or equal to 0 |
-    110070 | The accuracy of the configuration cannot exceed 8 bits |
-    110060 | The accuracy of the configuration cannot be less than 0 |
-    110061 | Price accuracy can't exceed 8 digits |
-    110062 | Price accuracy can't be less than 0 | |
-    110063 | The quantity accuracy of the pending order cannot exceed the configured accuracy |
-    110064 | Quantity cannot exceed the configured maximum limit | |
-    110065 | The order quantity cannot be less than the configured minimum limit | |
-    110067 | Transaction price accuracy cannot exceed configuration accuracy | |
-    110066 | Pending order price cannot exceed the configured maximum limit | |
-    110075 | The total amount of the transaction cannot be less than the configured amount |
-    120071 | No last price found | |
-    110068 | Failed to insert pending order log |
-    110069 | Reduce User Currency Failure | |
-    110073 | No order exists | |
-    110071 | Already have been withdrawn | |
-    110072 | Failed to join the withdrawal log | |
-    110080 | This transaction can only be in V1 version ||
+:-----:| :------------:|:------------: |:-----:
+20000 | Program Success | |
+220010 | Order success | |
+220020 | Successful withdrawal | |
+50004 | Required parameters are empty | |
+10002 | Processing failed, default | |
+110046 | Trading area does not exist | |
+110047 | Order Type Error | |
+110054 | Price fluctuations are too large | |
+110055 | Insufficient order amount | |
+110056 | Trading currency does not exist | |
+110057 | Accuracy does not exist | |
+110058 | Unopened transaction | |
+110059 | Pending order price can't be less than or equal to 0 |
+110070 | The accuracy of the configuration cannot exceed 8 bits |
+110060 | The accuracy of the configuration cannot be less than 0 |
+110061 | Price accuracy can't exceed 8 digits |
+110062 | Price accuracy can't be less than 0 | |
+110063 | The quantity accuracy of the pending order cannot exceed the configured accuracy |
+110064 | Quantity cannot exceed the configured maximum limit | |
+110065 | The order quantity cannot be less than the configured minimum limit | |
+110067 | Transaction price accuracy cannot exceed configuration accuracy | |
+110066 | Pending order price cannot exceed the configured maximum limit | |
+110075 | The total amount of the transaction cannot be less than the configured amount |
+120071 | No last price found | |
+110068 | Failed to insert pending order log |
+110069 | Reduce User Currency Failure | |
+110073 | No order exists | |
+110071 | Already have been withdrawn | |
+110072 | Failed to join the withdrawal log | |
+110080 | This transaction can only be in V1 version ||
