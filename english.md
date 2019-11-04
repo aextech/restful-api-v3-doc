@@ -19,6 +19,7 @@ AEX RESTful API Protocol Documentation (V3)
    + [11. Query my transaction record by Tag](#11-Query-my-transaction-record-by-tag)
    + [12. Query my transaction record by tab_id (flow id)](#12-Query-my-transaction-record-by-tab_id)
    + [13. Get Transaction Configuration](#13-Get-Transaction-Configuration)
+   + [14. Get my cancellation record](#14-Get-my-cancellation-record)
 + [FAQ](#faq)
    + [api release notes](#api-release-notes)
    + [Request and Response Description](#Request-and-Answer-Description)
@@ -35,8 +36,8 @@ AEX RESTful API Protocol Documentation (V3)
 
   Parameter name | Description
   ----- | ---------
-  Mk_type | trading area, such as cnc
-  Coinname| coin name, for example: coinname=btc, get the market data of the btc/cnc transaction pair; coinname=all, get the market data of all valid transaction pairs under the cnc trading area
+  mk_type | trading area, such as cnc
+  coinname| coin name, for example: coinname=btc, get the market data of the btc/cnc transaction pair; coinname=all, get the market data of all valid transaction pairs under the cnc trading area
 
   Normal response (json)
   ```
@@ -99,10 +100,10 @@ AEX RESTful API Protocol Documentation (V3)
   ```
   Request parameters:
 
-  Parameter name | Description
+  parameter name | description
   ----- | ---------
-  Mk_type | trading area, such as cnc
-  Coinname | coin name, for example: coinname=btc, get the market data of the btc/cnc transaction pair; coinname=all, get the market data of all valid transaction pairs under the cnc trading area
+  mk_type | trading area, such as cnc
+  coinname | coin name, for example: coinname=btc, get the market data of the btc/cnc transaction pair; coinname=all, get the market data of all valid transaction pairs under the cnc trading area
 
   Normal response (json)
   ```
@@ -142,11 +143,12 @@ AEX RESTful API Protocol Documentation (V3)
 
   Parameter name | Description
   ----- | ---------
-  Mk_type | trading area, such as cnc
-  Coinname | coin name, for example: coinname =btc, get the market data of the btc/cnc transaction pair; coinname=all, get the market data of all valid transaction pairs under the cnc trading area
-  Fromid | Start from which transaction ID query (optional parameter, without this parameter, the default query from the first)
-  Limit | the number of returns returned by the query
-
+  mk_type | trading area, such as cnc
+  coinname | coin name, for example: coinname =btc, get the market data of the btc/cnc transaction pair; coinname=all, get the market data of all valid transaction pairs under the cnc trading area
+  fromid | Start from which transaction ID query (optional parameter, without this parameter, the default query from the first)
+  limit | the number of returns returned by the query
+  sort |Sorting rules: ASC is positive order, DESC is reverse order, and default ASC
+  
   Normal response (json)
   ```
    {
@@ -158,7 +160,7 @@ AEX RESTful API Protocol Documentation (V3)
                "date": 1565160467,
                "price": 81238,
                "amount": 0.204957,
-               "tid": 13354117,
+               "tradeid": 13354117,
                "type": "sell"
            },
            ...
@@ -178,9 +180,9 @@ AEX RESTful API Protocol Documentation (V3)
 
   Parameter name | Description
   ----- | ---------
-  Key | public key
-  Time | Unix timestamp when the request was initiated, in seconds, not milliseconds
-  Md5 | authentication md5, md5=md5("{key}\_{user_id}\_{skey}\_{time}"), user_id is the numeric ID of the user after login, not the email account
+  key | public key
+  time | Unix timestamp when the request was initiated, in seconds, not milliseconds
+  md5 | authentication md5, md5=md5("{key}\_{user_id}\_{skey}\_{time}"), user_id is the numeric ID of the user after login, not the email account
 
 
   Normal response (json)
@@ -211,15 +213,15 @@ AEX RESTful API Protocol Documentation (V3)
 
   Parameter name | Description
   ----- | ---------
-  Key | public key
-  Time | Unix timestamp when the request was initiated, in seconds, not milliseconds
-  Md5 | authentication md5, md5=md5("{key}\_{user_id}\_{skey}\_{time}"), user_id is the numeric ID of the user after login, not the email account
-  Mk_type | trading area, such as cnc
-  Coinname | currency name, such as btc
-  Type | Pending order type: 1=Pending order, 2=Pending order
-  Price | pending order price
-  Amount | number of pending orders
-  Tag | custom tag (optional, default is 0), decimal, no more than 10 positive integers, can be used to associate pending orders and transaction records
+  key | public key
+  time | Unix timestamp when the request was initiated, in seconds, not milliseconds
+  md5 | authentication md5, md5=md5("{key}\_{user_id}\_{skey}\_{time}"), user_id is the numeric ID of the user after login, not the email account
+  mk_type | trading area, such as cnc
+  coinname | currency name, such as btc
+  type | Pending order type: 1=Pending order, 2=Pending order
+  price | pending order price
+  amount | number of pending orders
+  tag | custom tag (optional, default is 0), decimal, no more than 10 positive integers, can be used to associate pending orders and transaction records
 
 
   Normal response: When you place an order, you can complete the combination (string).
@@ -244,11 +246,11 @@ AEX RESTful API Protocol Documentation (V3)
 
   Parameter name | Description
   ----- | ---------
-  Key | public key
-  Time | Unix timestamp when the request was initiated, in seconds, not milliseconds
-  Md5 | authentication md5, md5=md5("{key}\_{user_id}\_{skey}\_{time}"), user_id is the numeric ID of the user after login, not the email account
-  Mk_type | trading area, such as cnc
-  Coinname | currency name, such as btc
+  key | public key
+  time | Unix timestamp when the request was initiated, in seconds, not milliseconds
+  md5 | authentication md5, md5=md5("{key}\_{user_id}\_{skey}\_{time}"), user_id is the numeric ID of the user after login, not the email account
+  mk_type | trading area, such as cnc
+  coinname | currency name, such as btc
   order_id | 
   tab_id | 
   tag |  
@@ -277,11 +279,11 @@ AEX RESTful API Protocol Documentation (V3)
 
   Parameter name | Description
   ----- | ---------
-  Key | public key
-  Time | Unix timestamp when the request was initiated, in seconds, not milliseconds
-  Md5 | authentication md5, md5=md5("{key}\_{user_id}\_{skey}\_{time}"), user_id is the numeric ID of the user after login, not the email account
-  Mk_type | trading area, such as cnc
-  Coinname | currency name, such as gat
+  key | public key
+  time | Unix timestamp when the request was initiated, in seconds, not milliseconds
+  md5 | authentication md5, md5=md5("{key}\_{user_id}\_{skey}\_{time}"), user_id is the numeric ID of the user after login, not the email account
+  mk_type | trading area, such as cnc
+  coinname | currency name, such as gat
 
 
   Reply, gat/cnc transaction pair (json)
@@ -318,12 +320,12 @@ AEX RESTful API Protocol Documentation (V3)
 
   Parameter name | Description
   ----- | ---------
-  Key | public key
-  Time | Unix timestamp when the request was initiated, in seconds, not milliseconds
-  Md5 | authentication md5, md5=md5("{key}\_{user_id}\_{skey}\_{time}"), user_id is the numeric ID of the user after login, not the email account
-  Mk_type | trading area, such as cnc
-  Coinname | currency name, such as gat
-  Page | Get the first few pages of records (optional parameters), without the page parameter, the server default page is 0, that is, query the data of the first page
+  key | public key
+  time | Unix timestamp when the request was initiated, in seconds, not milliseconds
+  md5 | authentication md5, md5=md5("{key}\_{user_id}\_{skey}\_{time}"), user_id is the numeric ID of the user after login, not the email account
+  mk_type | trading area, such as cnc
+  coinname | currency name, such as gat
+  page | Get the first few pages of records (optional parameters), without the page parameter, the server default page is 0, that is, query the data of the first page
 
 
   Reply, gat/cnc transaction pair (json)
@@ -361,13 +363,13 @@ AEX RESTful API Protocol Documentation (V3)
 
   Parameter name | Description
   ----- | ---------
-  Key | public key
-  Time | Unix timestamp when the request was initiated, in seconds, not milliseconds
-  Md5 | authentication md5, md5=md5("{key}\_{user_id}\_{skey}\_{time}"), user_id is the numeric ID of the user after login, not the email account
-  Mk_type | trading area, such as cnc
-  Coinname | currency name, such as gat
-  Tag | To query what tag order, request tag>=1, where the tag is the tag in the submitOrder.php request
-  Since_order_id | From which order ID to start querying (optional), require since_order_id>=1, without this parameter, start from the first order by default.
+  key | public key
+  time | Unix timestamp when the request was initiated, in seconds, not milliseconds
+  md5 | authentication md5, md5=md5("{key}\_{user_id}\_{skey}\_{time}"), user_id is the numeric ID of the user after login, not the email account
+  mk_type | trading area, such as cnc
+  coinname | currency name, such as gat
+  tag | To query what tag order, request tag>=1, where the tag is the tag in the submitOrder.php request
+  since_order_id | From which order ID to start querying (optional), require since_order_id>=1, without this parameter, start from the first order by default.
 
 
   Reply, gat/cnc transaction pair (json)
@@ -410,12 +412,12 @@ AEX RESTful API Protocol Documentation (V3)
 
   Parameter name | Description
   ----- | ---------
-  Key | public key
-  Time | Unix timestamp when the request was initiated, in seconds, not milliseconds
-  Md5 | authentication md5, md5=md5("{key}\_{user_id}\_{skey}\_{time}"), user_id is the numeric ID of the user after login, not the email account
-  Mk_type | trading area, such as cnc
-  Coinname | currency name, such as gat
-  Tab_id | To query a pipelined order, require tab_id>=1, where tab_id is the tab_id returned in getOrderList.php
+  key | public key
+  time | Unix timestamp when the request was initiated, in seconds, not milliseconds
+  md5 | authentication md5, md5=md5("{key}\_{user_id}\_{skey}\_{time}"), user_id is the numeric ID of the user after login, not the email account
+  mk_type | trading area, such as cnc
+  coinname | currency name, such as gat
+  tab_id | To query a pipelined order, require tab_id>=1, where tab_id is the tab_id returned in getOrderList.php
 
 
   Reply, gat/cnc transaction pair (json)
@@ -457,13 +459,13 @@ AEX RESTful API Protocol Documentation (V3)
 
   Parameter name | Description
   ----- | ---------
-  Key | public key
-  Time | Unix timestamp when the request was initiated, in seconds, not milliseconds
-  Md5 | authentication md5, md5=md5("{key}\_{user_id}\_{skey}\_{time}"), user_id is the numeric ID of the user after login, not the email account
-  Mk_type | trading area, such as cnc
-  Coinname | currency name, such as gat
-  Tag | To query what tag order, request tag>=1, where the tag is the tag in the submitOrder.php request
-  Since_trade_id | From which transaction ID is started (optional), since_trade_id>=1, without this parameter, the query starts from the first transaction record by default.
+  key | public key
+  time | Unix timestamp when the request was initiated, in seconds, not milliseconds
+  md5 | authentication md5, md5=md5("{key}\_{user_id}\_{skey}\_{time}"), user_id is the numeric ID of the user after login, not the email account
+  mk_type | trading area, such as cnc
+  coinname | currency name, such as gat
+  tag | To query what tag order, request tag>=1, where the tag is the tag in the submitOrder.php request
+  since_trade_id | From which transaction ID is started (optional), since_trade_id>=1, without this parameter, the query starts from the first transaction record by default.
 
 
   Reply, gat/cnc transaction pair (json)
@@ -510,13 +512,13 @@ AEX RESTful API Protocol Documentation (V3)
 
   Parameter name | Description
   ----- | ---------
-  Key | public key
-  Time | Unix timestamp when the request was initiated, in seconds, not milliseconds
-  Md5 | authentication md5, md5=md5("{key}\_{user_id}\_{skey}\_{time}"), user_id is the numeric ID of the user after login, not the email account
-  Mk_type | trading area, such as cnc
-  Coinname | currency name, such as gat
-  Tab_id | To query a pipelined order, require tab_id>=1, where tab_id is the tab_id returned in getOrderList.php
-  Since_trade_id | From which transaction ID is started (optional), since_trade_id>=1, without this parameter, the query starts from the first transaction record by default.
+  key | public key
+  time | Unix timestamp when the request was initiated, in seconds, not milliseconds
+  md5 | authentication md5, md5=md5("{key}\_{user_id}\_{skey}\_{time}"), user_id is the numeric ID of the user after login, not the email account
+  mk_type | trading area, such as cnc
+  coinname | currency name, such as gat
+  tab_id | To query a pipelined order, require tab_id>=1, where tab_id is the tab_id returned in getOrderList.php
+  since_trade_id | From which transaction ID is started (optional), since_trade_id>=1, without this parameter, the query starts from the first transaction record by default.
 
 
   Reply, gat/cnc transaction pair (json)
@@ -591,6 +593,53 @@ AEX RESTful API Protocol Documentation (V3)
 
   ### Error response (error code)
     Reference request and response instructions
+
+ ## 14. Get my cancellation record
+      
+Request URL
+```
+POST /v3/getCancelOrderList.php
+ ```
+    
+Parameter name | Description
+-----  | ---------
+key | public key
+time | UNIX timestamp when the request is initiated, in seconds, not milliseconds
+mD5 | authentication MD5, MD5 = MD5 ("{key} \ {user {ID} \ {skey} \ {time}"), user {ID is the number ID after the user logs in, not the email account
+mk_type| trading area, such as CNC Coinname, such as gat
+page | page number starts from 1 by default, page size is 10 by default, and cannot be changed
+order_iD | order ID is not a required parameter
+tab_iD | pipeline ID is not a required parameter
+    
+        
+Answer（json）
+```
+{
+"code": 20000,
+"msg": "",
+"data": {
+      "res": [
+               {
+                  "id": 593,
+                  "tab_id": 24022539,
+                  "user_id": 387712,
+                  "order_id": 25275,
+                  "coin": "b360",
+                  "market": "cnc",
+                  "order_time": "2019-11-04 14:50:11",
+                  "status": 0,
+                  "order_type": 1,
+                  "reset_amount": "1.49178000",
+                  "reset_coin": "cnc"
+                     }
+                 ],
+                 "current_page": 1,
+                 "total_num": 0,
+                 "is_more": 0,
+                 "total_page": 1
+             }
+         }
+``` 
 
 # FAQ
 ## api release notes
