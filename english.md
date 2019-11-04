@@ -249,7 +249,9 @@ AEX RESTful API Protocol Documentation (V3)
   Md5 | authentication md5, md5=md5("{key}\_{user_id}\_{skey}\_{time}"), user_id is the numeric ID of the user after login, not the email account
   Mk_type | trading area, such as cnc
   Coinname | currency name, such as btc
-  Order_id | Booking ID
+  order_id | 
+  tab_id | 
+  tag |  
 
 
   Normal response (string)
