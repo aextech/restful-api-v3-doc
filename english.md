@@ -227,7 +227,7 @@ AEX RESTful API Protocol Documentation (V3)
   {
       "code": 220010,
       "msg": "add order succ",
-      "data":[]
+      "data":{"tab_id":24022502}
   }
   ```
   ### Error response (error code)
@@ -609,8 +609,8 @@ AEX RESTful API Protocol Documentation (V3)
 
  The meaning of the specific representation of code:
 
-    Code | Description |msg(data)-zh |msg(data)-en
-    -----| ------------|------------ |-----
+Code | Description |msg(data)-zh |msg(data)-en
+-----| ------------|------------ |-----
     20000 | Program Success | |
     220010 | Order success | |
     220020 | Successful withdrawal | |
@@ -640,3 +640,4 @@ AEX RESTful API Protocol Documentation (V3)
     110073 | No order exists | |
     110071 | Already have been withdrawn | |
     110072 | Failed to join the withdrawal log | |
+    110080 | This transaction can only be in V1 version ||
