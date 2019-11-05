@@ -692,3 +692,4 @@ Code | Description |msg(data)-zh |msg(data)-en
 110071 | Already have been withdrawn | |
 110072 | Failed to join the withdrawal log | |
 110080 | This transaction can only be in V1 version ||
+1008000 | This transaction can only be in V1 version ||
