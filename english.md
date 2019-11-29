@@ -253,7 +253,7 @@ AEX RESTful API Protocol Documentation (V3)
   coinname | currency name, such as btc
   order_id | 
   tab_id | 
-  tag |  
+  tag | order tag // order_id, tab_id, tag can only pass one of them
 
 
   Normal response (string)
