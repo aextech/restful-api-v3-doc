@@ -220,7 +220,7 @@ AEX RESTful API Protocol Documentation (V3)
   type | Pending order type: 1=Pending order, 2=Pending order
   price | pending order price
   amount | number of pending orders
-  tag | custom tag (optional, default is 0), decimal, no more than 10 positive integers, can be used to associate pending orders and transaction records
+  tag | custom tag (optional, default is 0), decimal, no more than 9 positive integers, can be used to associate pending orders and transaction records
 
 
   Normal response: When you place an order, you can complete the combination (string).
