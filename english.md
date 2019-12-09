@@ -147,7 +147,6 @@ AEX RESTful API Protocol Documentation (V3)
   coinname | coin name, for example: coinname =btc, get the market data of the btc/cnc transaction pair; coinname=all, get the market data of all valid transaction pairs under the cnc trading area
   fromid | Start from which transaction ID query (optional parameter, without this parameter, the default query from the first)
   limit | the number of returns returned by the query
-  sort |Sorting rules: ASC is positive order, DESC is reverse order, and default ASC
   
   Normal response (json)
   ```
