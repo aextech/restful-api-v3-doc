@@ -20,6 +20,7 @@ AEX RESTful API Protocol Documentation (V3)
    + [12. Query my transaction record by tab_id (flow id)](#12-Query-my-transaction-record-by-tab_id)
    + [13. Get Transaction Configuration](#13-Get-Transaction-Configuration)
    + [14. Get my cancellation record](#14-Get-my-cancellation-record)
+   + [15. Get my order life cycle](#14-Get-my-cancellation-record)
 + [FAQ](#faq)
    + [api release notes](#api-release-notes)
    + [Request and Response Description](#Request-and-Answer-Description)
@@ -90,8 +91,6 @@ AEX RESTful API Protocol Documentation (V3)
   ```
   ### Error response (error code)
   Reference request and response instructions
-
-
 ## 2. Get transaction versus depth data
 
   Request URL
@@ -131,8 +130,6 @@ AEX RESTful API Protocol Documentation (V3)
   ```
   ### Error response (error code)
   Reference request and response instructions
-
-
 ## 3. Get the transaction to historical transaction data
 
   Request URL
@@ -168,7 +165,6 @@ AEX RESTful API Protocol Documentation (V3)
   ```
   ### Error response (error code)
   Reference request and response instructions
-
 ## 4. My account balance
 
   Request URL
@@ -201,7 +197,6 @@ AEX RESTful API Protocol Documentation (V3)
   ```
   ### Error response (error code)
   Reference request and response instructions
-
 ## 5. Pending order
 
   Request URL
@@ -221,6 +216,7 @@ AEX RESTful API Protocol Documentation (V3)
   price | pending order price
   amount | number of pending orders
   tag | custom tag (optional, default is 0), decimal, no more than 9 positive integers, can be used to associate pending orders and transaction records
+  time_in_force | Order timeliness ,int (optional, default is 1) 2:make only
 
 
   Normal response: When you place an order, you can complete the combination (string).
@@ -233,8 +229,6 @@ AEX RESTful API Protocol Documentation (V3)
   ```
   ### Error response (error code)
   Reference request and response instructions
-
-
 ## 6. Withdrawal
 
   Request URL
@@ -266,8 +260,6 @@ AEX RESTful API Protocol Documentation (V3)
 
   ### Error response (error code)
   Reference request and response instructions
-
-
 ## 7. My pending order
 
   Request URL
@@ -307,8 +299,6 @@ AEX RESTful API Protocol Documentation (V3)
 
   ### Error response (error code)
   Reference request and response instructions
-
-
 ## 8. My transaction record
 
   Request URL
@@ -349,8 +339,6 @@ AEX RESTful API Protocol Documentation (V3)
 
   ### Error response (error code)
   Reference request and response instructions
-
-
 ## 9. Query my pending order via Tag
 
   Request URL
@@ -399,7 +387,6 @@ AEX RESTful API Protocol Documentation (V3)
 
   ### Error response (error code)
   Reference request and response instructions
-
 ## 10. Query my pending order via tab_id
 
   Request URL
@@ -447,7 +434,6 @@ AEX RESTful API Protocol Documentation (V3)
 
   ### Error response (error code)
   Reference request and response instructions
-
 ## 11. Query my transaction record by tag
 
   Request URL
@@ -500,7 +486,6 @@ AEX RESTful API Protocol Documentation (V3)
        }
    }
   ```
-
 ## 12. Query my transaction record by tab_id
 
   Request URL
@@ -553,7 +538,6 @@ AEX RESTful API Protocol Documentation (V3)
        }
    }
   ```
-
   ## 13. Get transaction configuration
 
     Request URL
@@ -592,7 +576,6 @@ AEX RESTful API Protocol Documentation (V3)
 
   ### Error response (error code)
     Reference request and response instructions
-
  ## 14. Get my cancellation record
       
 Request URL
@@ -639,7 +622,81 @@ Answer（json）
              }
          }
 ``` 
+## 15. Get my order life cycle by tab_id   
 
+  Request URL
+  ```
+  POST /v3/orderLifeCycle.php
+  ```
+  Request parameters:
+  Parameter name | Description
+  -----  | ---------
+  key | public key
+  time | Unix timestamp when the request was initiated, in seconds, not milliseconds
+  md5 | authentication md5, md5=md5("{key}\_{user_id}\_{skey}\_{time}"), user_id is the numeric ID of the user after login, not the email account
+  mk_type | trading area, such as cnc
+  coinname | currency name, such as gat
+  tab_id | To query a pipelined order, require tab_id>=1, where tab_id is the tab_id returned in getOrderList.php
+  
+  Reply, gat/cnc transaction pair（json）
+  ```
+   {
+   	"code": 20000,
+   	"msg": "",
+   	"data": {
+   		"mk_type": "cnc",
+   		"coin": "btc",
+   		"tab_id": 38506249,
+   		"order_log": [{
+   			"price": "185.00000000",
+   			"amount": "109.000000",
+   			"type": "sell",
+   			"time": "2020-05-18 16:29:19",
+   			"tab_id": 38506249,
+   			"status": 2,
+   			"in_force": 1
+   		}],
+   		"order": [{
+   			"order_id": 1598,
+   			"type": "buy",
+   			"price": "10.00000000",
+   			"amount": "10.00000000",
+   			"amount_origin": "10.00000000",
+   			"tab_id": 38506259,
+   			"time": "2020-05-18 20:10:45",
+   			"tag": 0
+   		}],
+   		"trade": [{
+   			"amount": "1.00000000",
+   			"price": "185.00000000",
+   			"time": "2020-05-18 16:29:19",
+   			"fee": "6.86990504",
+   			"fee_coin": "gat",
+   			"tag": 0,
+   			"exec_type": "t",
+   			"trade_id": 1503,
+   			"tab_id": 38506249,
+   			"type": "sell",
+   			"match": "other"
+   		}],
+   		"cancel_order": [{
+   			"order_id": 1592,
+   			"time": "2020-05-18 16:31:57",
+   			"status": 0,
+   			"tab_id": 38506249,
+   			"type": "sell",
+   			"re_amount": "108.00000000",
+   			"re_coin": "btc"
+   		}]
+   	}
+   }
+    
+  ```      
+
+      
+### Wrong answer(error code)
+Refer to the request and response instructions
+        
 # FAQ
 ## api release notes
   ```
