@@ -52,7 +52,9 @@ AEX RESTful API Protocol Documentation (V3)
               "high": 85701,
               "low": 78527,
               "last": 81538,
+              "last24": 81538, //The first price in the last 24 hours
               "vol": 4775.686371,
+              "money": 444775.686371, //Last 24 hours turnover
               "buy": 81434,
               "sell": 81537,
               "range": -0.017
@@ -67,7 +69,9 @@ AEX RESTful API Protocol Documentation (V3)
                     "high": 0.0158,
                     "low": 0.015,
                     "last": 0.01529,
+                    "last24":0.01529,
                     "vol": 352898167.69075,
+                    "money": 32898167.69075,
                     "buy": 0.01527,
                     "sell": 0.01532,
                     "range": -0.0077
@@ -78,7 +82,9 @@ AEX RESTful API Protocol Documentation (V3)
                     "high": 85701,
                     "low": 78527,
                     "last": 81445,
+                    "last24": 81445,
                     "vol":4775.959156,
+                    "money":34775.959156,
                     "buy": 81417,
                     "sell": 81448,
                     "range": -0.0177
