@@ -8,19 +8,22 @@ AEX RESTful API Protocol Documentation (V3)
    + [1. Get transaction vs. market data](#1-Get-transaction-vs.market-data)
    + [2. Get Transaction vs. Depth Data](#2-Get-Transaction-vs.Depth-Data)
    + [3. Get transaction to historical transaction data](#3-Get-transaction-to-historical-transaction-data)
+   + [4. Get all market pair information](#4-Get all market pair information)
+   + [5. Get specified market pair information](#5-Get specified market pair information)
+   + [6. Get k Kline Data](#6-Get k Kline Data)
 + [User Data Interface](#4-My-Account-Balance)
-   + [4. My Account Balance](#4-My-Account-Balance)
-   + [5. Pending Order](#5-Pending-Order)
-   + [6. Withdrawal](#6-Withdrawal)
-   + [7. My Pending Order](#7-My-Pending-Order)
-   + [8. My Transaction Record](#8-My-Transaction-Record)
-   + [9. Query my pending order via Tag](#9-Query-my-pending-order-via-tag)
-   + [10. Query my pending order via tab_id](#10-Query-my-pending-order-via-tab_id)
-   + [11. Query my transaction record by Tag](#11-Query-my-transaction-record-by-tag)
-   + [12. Query my transaction record by tab_id (flow id)](#12-Query-my-transaction-record-by-tab_id)
-   + [13. Get Transaction Configuration](#13-Get-Transaction-Configuration)
-   + [14. Get my cancellation record](#14-Get-my-cancellation-record)
-   + [15. Get my order life cycle](#14-Get-my-cancellation-record)
+   + [7. My Account Balance](#4-My-Account-Balance)
+   + [8. Pending Order](#5-Pending-Order)
+   + [9. Withdrawal](#6-Withdrawal)
+   + [10. My Pending Order](#7-My-Pending-Order)
+   + [11. My Transaction Record](#8-My-Transaction-Record)
+   + [12. Query my pending order via Tag](#9-Query-my-pending-order-via-tag)
+   + [13. Query my pending order via tab_id](#10-Query-my-pending-order-via-tab_id)
+   + [14. Query my transaction record by Tag](#11-Query-my-transaction-record-by-tag)
+   + [15. Query my transaction record by tab_id (flow id)](#12-Query-my-transaction-record-by-tab_id)
+   + [16. Get Transaction Configuration](#13-Get-Transaction-Configuration)
+   + [17. Get my cancellation record](#14-Get-my-cancellation-record)
+   + [18. Get my order life cycle](#14-Get-my-cancellation-record)
 + [FAQ](#faq)
    + [api release notes](#api-release-notes)
    + [Request and Response Description](#Request-and-Answer-Description)
@@ -171,7 +174,128 @@ AEX RESTful API Protocol Documentation (V3)
   ```
   ### Error response (error code)
   Reference request and response instructions
-## 4. My account balance
+## 4. Get all market pair information
+
+  Request URL
+  ```
+  GET /v3/allpair.php
+  ```
+  Request parameters:
+
+  Parameter name | Description
+  ----- | ---------
+ 
+  
+  Normal response (json)
+  ```
+   {
+     "eno": 0, 
+     "emsg":"", 
+     "data":[
+       {
+         "market":"usdt", 
+         "coin": "btc", 
+         "limits":{
+           "PricePrecision": 0, 
+           "AmtPrecision": 6, // the number of pending orders
+           "AmtMax": "10000000.00000000", 
+           "AmtMin": "0.00000100", 
+           "PriceMax": "1000000.00000000", 
+           "MoneyMin": "1.00000000" // Minimum pending order <= Pending order price* Pending order quantity
+         }
+       }
+     ]
+   }
+  ```
+  ### Error response (error code)
+  Reference request and response instructions
+## 5. Get specified market pair information
+
+  Request URL
+  ```
+  GET /v3/pair.php
+  ```
+  Request parameters:
+
+  Parameter name | Description
+  ----- | ---------
+  market | trading area, such as cnc
+  coin | currency name, such as btc
+  
+  Normal response (json)
+  ```
+  {
+    "eno": 0, 
+    "emsg":"", 
+    "data":[
+      {
+        "market":"usdt", 
+        "coin": "btc", 
+        "limits":{
+          "PricePrecision": 0, 
+          "AmtPrecision": 6, // the number of pending orders
+          "AmtMax": "10000000.00000000", 
+          "AmtMin": "0.00000100", 
+          "PriceMax": "1000000.00000000", 
+          "MoneyMin": "1.00000000" // Minimum pending order <= Pending order price* Pending order quantity
+        }
+      }
+    ]
+  }
+  ```
+  ### Error response (error code)
+  Reference request and response instructions
+## 6. Get k kline Data
+
+  Request URL
+  ```
+  GET /v3/kLine.php
+  ```
+  Request parameters:
+
+  Parameter name | Description
+  ----- | ---------
+  market | trading area, such as cnc
+  coin | currency name, such as btc
+  cycle| k kline period, such as 5min
+  begin_time|start time, such as 1608789000(time stamp)
+  end_time|end time, such as 1608790200 (time stamp)
+  
+  Optional time period
+      ```
+      '1min' => '1 min',
+      '5min' => '5 min',
+      '15min' => '15 min',
+      '30min' => '30 min'
+      '1hour' => '1 hour',
+      '4hour' => '4 hour',
+      '1day' => 'one day',
+      '5day' => 'five day',
+      '1wek' => 'one week',
+      '1mon' => 'one month ',
+      ```
+  Normal response (json)
+  ```
+   {
+        "code": 20000,
+        "msg":"",
+        "data":
+         [
+           {
+               t: 1608789000,     /K-line opening time
+               v: "0.25671818",   //Number of transactions
+               o: "150191",       //Opening price
+               h: "150191",       //High price
+               l: "150122",       //Low price
+               c: "150154"        //The latest price or closing price
+           },
+           ...
+         ]
+    }
+  ```
+  ### Error response (error code)
+  Reference request and response instructions      
+## 7. My account balance
 
   Request URL
   ```
@@ -203,7 +327,7 @@ AEX RESTful API Protocol Documentation (V3)
   ```
   ### Error response (error code)
   Reference request and response instructions
-## 5. Pending order
+## 8. Pending order
 
   Request URL
   ```
@@ -235,7 +359,7 @@ AEX RESTful API Protocol Documentation (V3)
   ```
   ### Error response (error code)
   Reference request and response instructions
-## 6. Withdrawal
+## 9. Withdrawal
 
   Request URL
   ```
@@ -266,7 +390,7 @@ AEX RESTful API Protocol Documentation (V3)
 
   ### Error response (error code)
   Reference request and response instructions
-## 7. My pending order
+## 10. My pending order
 
   Request URL
   ```
@@ -305,7 +429,7 @@ AEX RESTful API Protocol Documentation (V3)
 
   ### Error response (error code)
   Reference request and response instructions
-## 8. My transaction record
+## 11. My transaction record
 
   Request URL
   ```
@@ -345,7 +469,7 @@ AEX RESTful API Protocol Documentation (V3)
 
   ### Error response (error code)
   Reference request and response instructions
-## 9. Query my pending order via Tag
+## 12. Query my pending order via Tag
 
   Request URL
   ```
@@ -393,7 +517,7 @@ AEX RESTful API Protocol Documentation (V3)
 
   ### Error response (error code)
   Reference request and response instructions
-## 10. Query my pending order via tab_id
+## 13. Query my pending order via tab_id
 
   Request URL
   ```
@@ -440,7 +564,7 @@ AEX RESTful API Protocol Documentation (V3)
 
   ### Error response (error code)
   Reference request and response instructions
-## 11. Query my transaction record by tag
+## 14. Query my transaction record by tag
 
   Request URL
   ```
@@ -492,7 +616,7 @@ AEX RESTful API Protocol Documentation (V3)
        }
    }
   ```
-## 12. Query my transaction record by tab_id
+## 15. Query my transaction record by tab_id
 
   Request URL
   ```
@@ -544,7 +668,7 @@ AEX RESTful API Protocol Documentation (V3)
        }
    }
   ```
-  ## 13. Get transaction configuration
+## 16. Get transaction configuration
 
     Request URL
     ```
@@ -582,12 +706,12 @@ AEX RESTful API Protocol Documentation (V3)
 
   ### Error response (error code)
     Reference request and response instructions
- ## 14. Get my cancellation record
+## 17. Get my cancellation record
       
 Request URL
 ```
 POST /v3/getCancelOrderList.php
- ```
+```
     
 Parameter name | Description
 -----  | ---------
@@ -628,11 +752,11 @@ Answer（json）
              }
          }
 ``` 
-## 15. Get my order life cycle by tab_id   
+## 18. Get my order life cycle by tab_id   
 
   Request URL
   ```
-  POST /v3/orderLifeCycle.php
+    POST /v3/orderLifeCycle.php
   ```
   Request parameters:
   Parameter name | Description
