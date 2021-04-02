@@ -5,32 +5,32 @@ AEX RESTful API Protocol Documentation (V3)
 
 # table of Contents
 + [public data interface](#request--response)
-   + [1. Get transaction vs. market data](#1-Get-transaction-vs.market-data)
-   + [2. Get Transaction vs. Depth Data](#2-Get-Transaction-vs.Depth-Data)
-   + [3. Get transaction to historical transaction data](#3-Get-transaction-to-historical-transaction-data)
-   + [4. Get all market pair information](#4-Get all market pair information)
-   + [5. Get specified market pair information](#5-Get specified market pair information)
-   + [6. Get k Kline Data](#6-Get k Kline Data)
-+ [User Data Interface](#4-My-Account-Balance)
-   + [7. My Account Balance](#4-My-Account-Balance)
-   + [8. Pending Order](#5-Pending-Order)
-   + [9. Withdrawal](#6-Withdrawal)
-   + [10. My Pending Order](#7-My-Pending-Order)
-   + [11. My Transaction Record](#8-My-Transaction-Record)
-   + [12. Query my pending order via Tag](#9-Query-my-pending-order-via-tag)
-   + [13. Query my pending order via tab_id](#10-Query-my-pending-order-via-tab_id)
-   + [14. Query my transaction record by Tag](#11-Query-my-transaction-record-by-tag)
-   + [15. Query my transaction record by tab_id (flow id)](#12-Query-my-transaction-record-by-tab_id)
-   + [16. Get Transaction Configuration](#13-Get-Transaction-Configuration)
-   + [17. Get my cancellation record](#14-Get-my-cancellation-record)
-   + [18. Get my order life cycle](#14-Get-my-cancellation-record)
+   + [1. Get transaction vs. market data](#1-get-transaction-to-market-data)
+   + [2. Get Transaction vs. Depth Data](#2-get-transaction-versus-depth-data)
+   + [3. Get transaction to historical transaction data](#3-get-the-transaction-to-historical-transaction-data)
+   + [4. Get all market pair information](#4-get-all-market-pair-information)
+   + [5. Get specified market pair information](#5-get-specified-market-pair-information)
+   + [6. Get k Kline Data](#6-get-k-kline-data)
++ [User Data Interface](#user-data-nterface)
+   + [7. My Account Balance](#7-my-account-balance)
+   + [8. Pending Order](#8-pending-order)
+   + [9. Withdrawal](#9-withdrawal)
+   + [10. My Pending Order](#10-my-pending-order)
+   + [11. My Transaction Record](#11-my-transaction-record)
+   + [12. Query my pending order via Tag](#12-query-my-pending-order-via-tag)
+   + [13. Query my pending order via tab_id](#13-query-my-pending-order-via-tab_id)
+   + [14. Query my transaction record by Tag](#14-query-my-transaction-record-by-tag)
+   + [15. Query my transaction record by tab_id (flow id)](#15-query-my-transaction-record-by-tab_id)
+   + [16. Get Transaction Configuration](#16-get-transaction-configuration)
+   + [17. Get my cancellation record](#17-get-my-cancellation-record)
+   + [18. Get my order life cycle](#18-get-my-order-life-cycle)
 + [FAQ](#faq)
    + [api release notes](#api-release-notes)
-   + [Request and Response Description](#Request-and-Answer-Description)
+   + [Request and Response Description](#request-and-answer-description)
 
 
 # request / answer
-## 1. Get transaction-to-market data
+## 1. Get transaction to market data
 
   Request URL
   ```
@@ -111,7 +111,7 @@ AEX RESTful API Protocol Documentation (V3)
   parameter name | description
   ----- | ---------
   mk_type | trading area, such as cnc
-  coinname | coin name, for example: coinname=btc, get the market data of the btc/cnc transaction pair; coinname=all, get the market data of all valid transaction pairs under the cnc trading area
+  coinname | coin name, for example: coinname=btc, get the market data of the btc/cnc depth pair
 
   Normal response (json)
   ```
@@ -150,7 +150,7 @@ AEX RESTful API Protocol Documentation (V3)
   Parameter name | Description
   ----- | ---------
   mk_type | trading area, such as cnc
-  coinname | coin name, for example: coinname =btc, get the market data of the btc/cnc transaction pair; coinname=all, get the market data of all valid transaction pairs under the cnc trading area
+  coinname | coin name, for example: coinname =btc, get the market data of the btc/cnc trade pair; coinname=all
   fromid | Start from which transaction ID query (optional parameter, without this parameter, the default query from the first)
   limit | the number of returns returned by the query
   
@@ -752,7 +752,7 @@ Answer（json）
              }
          }
 ``` 
-## 18. Get my order life cycle by tab_id   
+## 18. Get my order life cycle 
 
   Request URL
   ```
@@ -837,7 +837,7 @@ Refer to the request and response instructions
   5) This version of the pending order and the withdrawal order are returned asynchronously. The pending return is successful, but it represents the process of entering the match; the withdrawal of the order is successful, but the representative accepts the request to withdraw the order, and does not mean that the order must be withdrawn. Whether the transaction is successful or not, you need to use other interfaces to judge (my pending order and my transaction record).
 
   ```
-## Request and response instructions
+## Request and Answer Description
   ```
     1) response public field description; code: program code; msg: return error information; data: successfully returned field
     2) Relationship description; code is an integer, the highest is an odd number represents a program error, and when the highest bit is an even number, the program succeeds; when the program succeeds, msg is generally empty, and vice versa, the data is generally empty when the program fails. Whether the program is successful cannot be judged by using msg and data as empty. This is only a reference condition, and the condition is the highest parity of the code.
