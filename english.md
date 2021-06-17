@@ -63,7 +63,7 @@ AEX RESTful API Protocol Documentation (V3)
               "range": -0.017
             }
             }
-            ```
+  ```
             ```
             All trading data for the market under the cnc trading area:
             {
@@ -262,7 +262,7 @@ AEX RESTful API Protocol Documentation (V3)
   end_time|end time, such as 1608790200 (time stamp)
   
   Optional time period
-      ```
+  ```
       '1min' => '1 min',
       '5min' => '5 min',
       '15min' => '15 min',
@@ -303,11 +303,12 @@ AEX RESTful API Protocol Documentation (V3)
   ```
   Request parameters:
 
-  Parameter name | Description
-  ----- | ---------
-  key | public key
-  time | Unix timestamp when the request was initiated, in seconds, not milliseconds
-  md5 | authentication md5, md5=md5("{key}\_{user_id}\_{skey}\_{time}"), user_id is the numeric ID of the user after login, not the email account
+  Parameter name | If required | Description
+  ----- | ---------| ---------
+  key | Yes | public key
+  time | Yes | Unix timestamp when the request was initiated, in seconds, not milliseconds
+  md5 | Yes | authentication md5, md5=md5("{key}\_{user_id}\_{skey}\_{time}"), user_id is the numeric ID of the user after login, not the email account
+ coins | Yes | Currency parameter, can be passed in a single currency or multiple currencies. Up to 20 at a time, with multiple currencies separated by English commas. Example: BTC or BTC, CNC 
 
 
   Normal response (json)
@@ -687,7 +688,7 @@ AEX RESTful API Protocol Documentation (V3)
          "code": 20000,
          "msg": "",
          "data": {
-
+    
              "cnc": {
                  "gat": {
                      "conf_service_id": 0
@@ -699,7 +700,7 @@ AEX RESTful API Protocol Documentation (V3)
                      "conf_service_id": 0
                  }
              }
-
+    
          }
      }
     ```
@@ -707,12 +708,12 @@ AEX RESTful API Protocol Documentation (V3)
   ### Error response (error code)
     Reference request and response instructions
 ## 17. Get my cancellation record
-      
+
 Request URL
 ```
 POST /v3/getCancelOrderList.php
 ```
-    
+
 Parameter name | Description
 -----  | ---------
 key | public key
@@ -722,8 +723,8 @@ mk_type| trading area, such as CNC Coinname, such as gat
 page | page number starts from 1 by default, page size is 10 by default, and cannot be changed
 order_iD | order ID is not a required parameter
 tab_iD | pipeline ID is not a required parameter
-    
-        
+
+
 Answer（json）
 ```
 {
@@ -751,7 +752,7 @@ Answer（json）
                  "total_page": 1
              }
          }
-``` 
+```
 ## 18. Get my order life cycle 
 
   Request URL
@@ -767,63 +768,63 @@ Answer（json）
   mk_type | trading area, such as cnc
   coinname | currency name, such as gat
   tab_id | To query a pipelined order, require tab_id>=1, where tab_id is the tab_id returned in getOrderList.php
-  
+
   Reply, gat/cnc transaction pair（json）
   ```
    {
-   	"code": 20000,
-   	"msg": "",
-   	"data": {
-   		"mk_type": "cnc",
-   		"coin": "btc",
-   		"tab_id": 38506249,
-   		"order_log": [{
-   			"price": "185.00000000",
-   			"amount": "109.000000",
-   			"type": "sell",
-   			"time": "2020-05-18 16:29:19",
-   			"tab_id": 38506249,
-   			"status": 2,
-   			"in_force": 1
-   		}],
-   		"order": [{
-   			"order_id": 1598,
-   			"type": "buy",
-   			"price": "10.00000000",
-   			"amount": "10.00000000",
-   			"amount_origin": "10.00000000",
-   			"tab_id": 38506259,
-   			"time": "2020-05-18 20:10:45",
-   			"tag": 0
-   		}],
-   		"trade": [{
-   			"amount": "1.00000000",
-   			"price": "185.00000000",
-   			"time": "2020-05-18 16:29:19",
-   			"fee": "6.86990504",
-   			"fee_coin": "gat",
-   			"tag": 0,
-   			"exec_type": "t",
-   			"trade_id": 1503,
-   			"tab_id": 38506249,
-   			"type": "sell",
-   			"match": "other"
-   		}],
-   		"cancel_order": [{
-   			"order_id": 1592,
-   			"time": "2020-05-18 16:31:57",
-   			"status": 0,
-   			"tab_id": 38506249,
-   			"type": "sell",
-   			"re_amount": "108.00000000",
-   			"re_coin": "btc"
-   		}]
-   	}
-   }
+     	"code": 20000,
+     	"msg": "",
+     	"data": {
+     		"mk_type": "cnc",
+     		"coin": "btc",
+     		"tab_id": 38506249, 
+     		"order_log": [{
+     			"price": "185.00000000", // Order price
+     			"amount": "109.000000", // Order amount
+     			"type": "sell", // Type of sale, Sell or Buy
+     			"time": "2020-05-18 16:29:19", // Order time
+     			"tab_id": 38506249, 
+     			"status": 2, // Status:1.place an order2.place an order successfully 3.back an order
+     			"in_force": 1 // Order timeliness :1 ordinary 2make only
+     		}],
+     		"order": [{ // order ticket
+     			"order_id": 1598, // Order number
+     			"type": "buy",
+     			"price": "10.00000000", // Order price
+     			"amount": "10.00000000", // Untraded Quantity
+     			"amount_origin": "10.00000000", // Order amount
+     			"tab_id": 38506259,
+     			"time": "2020-05-18 20:10:45", // Order time
+     			"tag": 0
+     		}],
+     		"trade": [{ // Transaction details
+     			"amount": "1.00000000", // The transaction amount
+     			"price": "185.00000000", // The transaction price
+     			"time": "2020-05-18 16:29:19", // The transaction time
+     			"fee": "6.86990504", // The transaction fee
+     			"fee_coin": "gat", // The transaction fee coin
+     			"tag": 0,
+     			"exec_type": "t", // Direction of flow :tiker or make
+     			"trade_id": 1503, // The transaction Id
+     			"tab_id": 38506249,
+     			"type": "sell",
+     			"match": "other" // counterparty- self:self trade,other:other users
+     		}],
+     		"cancel_order": [{ // cancel log
+     			"order_id": 1592, 
+     			"time": "2020-05-18 16:31:57",
+     			"status": 0, // cancel status: 0:cancel success 1:cancel in 2:cancel failure
+     			"tab_id": 38506249,
+     			"type": "sell",
+     			"re_amount": "108.00000000", // Quantity returned on cancel order
+     			"re_coin": "btc" // Coin returned on cancel order
+     		}]
+     	}
+     }
     
-  ```      
+  ```
 
-      
+
 ### Wrong answer(error code)
 Refer to the request and response instructions
         
